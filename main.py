@@ -3,7 +3,17 @@ from colored import fg, bg, attr
 from datetime import *
 import platform
 
+appendList = []
 
+
+def append(path):
+    params = path.split(";")
+    firstParam = params[0].split(" ")
+    appendList.append(firstParam[1])
+    for i in params[1::]:
+        appendList.append(i) 
+
+    
 
 if __name__ == '__main__':
     exitCommands = ['exit', 'q', 'quit', 'pydos --q', 'exit()']
@@ -23,5 +33,7 @@ if __name__ == '__main__':
         command = input(f"PyDOS prompt {current_directory}>")
         if command in exitCommands:
             exit()
+        if command[0:6] == "append":
+            append(command)
         else: 
             print(f"{fg('red_1')}Fatal: No command found '{command}'{attr('reset')}")
