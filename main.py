@@ -5,6 +5,7 @@ import platform
 import psutil
 import socket
 from getmac import get_mac_address as gma
+import magic
 
 appendList = []
 
@@ -31,6 +32,9 @@ def arp():
                 Internet Address    Physical Adress    Type
                 {address.address}      {macAdd}     {socket.SO_TYPE}'''
                 print(output)
+
+def assoc(command):
+    pass()
           
 if __name__ == '__main__':
     exitCommands = ['exit', 'q', 'quit', 'pydos --q', 'exit()']
@@ -47,12 +51,16 @@ if __name__ == '__main__':
 
     print(initiation)
     while True:
-        command = input(f"PyDOS prompt {current_directory}>")
+        command = input(f"{device_name} {current_directory}>")
         if command in exitCommands:
             exit()
         elif command[0:6] == "append":
             append(command)
         elif command == "arp":
             arp()
+        elif command[0:6] == "assign":
+            print("\nSorry but we do not have support for the assign command hehe")
+        elif command[0:5] == "assoc":
+            assoc(command)
         else: 
             print(f"{fg('red_1')}Fatal: No command found '{command}'{attr('reset')}")
